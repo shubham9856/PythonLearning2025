@@ -1,8 +1,11 @@
 from selenium.webdriver.common.by import By
 
+from Utilities.BrowserUtilities import BrowserUtilities
 
-class loginPage:
+
+class loginPage(BrowserUtilities):
     def __init__(self, driver):
+        super().__init__(self)
         self.driver = driver
 
         self.lc_login_header = (By.XPATH, '//h2[text()="Test login"]')

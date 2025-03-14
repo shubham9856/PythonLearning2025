@@ -4,7 +4,7 @@ import pytest
 
 from Pages.loginPage import loginPage
 
-data_path = "D:\PythonLearning2025\MockData\LoginData.json"
+data_path = "D:/PythonLearning2025/MockData/LoginData.json"
 with open(data_path) as f:
     test_data = json.load(f)  # Loads json data
     test_data_list = test_data["Users"]  # returns the Users dictionary data (list of users)
@@ -16,6 +16,9 @@ def test_valid_login(driver_instance, test_data_items):
     driver.get("https://practicetestautomation.com/practice-test-login/")
 
     login_page_obj = loginPage(driver)
+
+    login_page_obj.getTitle()
+
     login_header = driver.find_element(*login_page_obj.lc_login_header)
     print(login_header.text)
 
