@@ -10,14 +10,14 @@ with open(data_path) as f:
     test_data_list = test_data["Users"]  # returns the Users dictionary data (list of users)
 
 
-@pytest.mark.parametrize("test_data_items", test_data_list)
-def test_valid_login(driver_instance, test_data_items):
+@pytest.mark.parametrize("test_data_items", test_data_list)   # Pass the data in format of list and write into a temp variable
+def test_valid_login(driver_instance, test_data_items):  # Pass the variable
     driver = driver_instance
     driver.get("https://practicetestautomation.com/practice-test-login/")
 
     login_page_obj = loginPage(driver)
 
-    login_page_obj.getTitle()
+    print("Page Url Title: ", login_page_obj.getTitle())
 
     login_header = driver.find_element(*login_page_obj.lc_login_header)
     print(login_header.text)
@@ -27,7 +27,7 @@ def test_valid_login(driver_instance, test_data_items):
 
     submit_btn = driver.find_element(*login_page_obj.lc_submit_btn)
     driver.execute_script("arguments[0].scrollIntoView(true);", submit_btn)
-    submit_btn.click()
+    # submit_btn.click()
 
     login_success_msg = driver.find_element(*login_page_obj.lc_login_successful_msg)
     assert login_success_msg.text == "Logged In Successfully", "Check User is logged in"
